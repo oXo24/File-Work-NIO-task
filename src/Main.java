@@ -25,10 +25,28 @@ public class Main {
         } else System.out.println("Error occured");
     }
 
+    public static String getExtension() {
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("""
+                Choose desired extension of the file:
+                1-txt;
+                2-docx;
+                3-doc;
+                Enter a action number:""");
+        int answer = scanner.nextInt();
+        return switch (answer) {
+            case 1 -> ".txt";
+            case 2 -> ".docx";
+            case 3 -> ".doc";
+            default -> throw new IllegalStateException("Unexpected value: " + answer);
+        };
+    }
+
     public static String getFileName() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter file name without extension, e.g. ``notes``: ");
-        return scanner.nextLine().trim() + ".txt";
+        return scanner.nextLine().trim() + getExtension();
     }
 
     public static String getFileText() {
